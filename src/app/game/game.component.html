@@ -1,0 +1,24 @@
+<h2 class="text-center">Die Regeln:</h2>
+<ul class="col-4 mx-auto text-center">
+    <li>Wähle eine der drei angezeigten Möglichkeiten aus</li>
+    <li>Der Computer trifft eine zufällige Auswahl</li>
+</ul>
+
+<h2 class="text-center mb-3">Triff deine Auswahl:</h2>
+<div class="text-center">
+    <button class="mx-5" (click)="changeSelection('Schere')">
+        <img src="../../assets/scissors.png" alt="Schere">
+    </button>
+    <button class="mx-5" (click)="changeSelection('Stein')">
+        <img src="../../assets/rock.png" alt="Stein">
+    </button>
+    <button class="mx-5" (click)="changeSelection('Papier')">
+        <img src="../../assets/paper.png" alt="Papier">
+    </button>
+</div>
+<div class="text-center" *ngIf="result!==''">
+    <p>Du hast gewählt: {{selections.player}}</p>
+    <p>Der Computer hat gewählt: {{selections.computer}}</p>
+    <p *ngIf="result!=='draw'">Der Gewinner ist: {{winner}}!</p>
+    <p *ngIf="result==='draw'">Unentschieden!</p>
+</div>
