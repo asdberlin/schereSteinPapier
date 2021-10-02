@@ -1,7 +1,8 @@
 <h2 class="text-center">Die Regeln:</h2>
-<ul class="col-4 mx-auto text-center">
+<ul class="text-center">
     <li>Wähle eine der drei angezeigten Möglichkeiten aus</li>
     <li>Der Computer trifft eine zufällige Auswahl</li>
+    <li>Um erneut zu spielen, wähle erneut aus den drei Möglichkeiten aus</li>
 </ul>
 
 <h2 class="text-center mb-3">Triff deine Auswahl:</h2>
@@ -16,9 +17,32 @@
         <img src="../../assets/paper.png" alt="Papier">
     </button>
 </div>
-<div class="text-center" *ngIf="result!==''">
+
+<table class="table w-50 text-center mx-auto">
+    <thead>
+        <tr>
+            <th>Gewonnen</th>
+            <th>Verloren</th>
+            <th>Unentschieden</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{this.wins}}</td>
+            <td>{{this.loses}}</td>
+            <td>{{this.draws}}</td>
+        </tr>
+    </tbody>
+</table>
+<div class="text-center">
+    <button class="btn btn-secondary" (click)="clearData()">
+        Alle Daten zurücksetzen
+    </button>
+</div>
+
+<div class="text-center" *ngIf="winner!==''">
     <p>Du hast gewählt: {{selections.player}}</p>
     <p>Der Computer hat gewählt: {{selections.computer}}</p>
-    <p *ngIf="result!=='draw'">Der Gewinner ist: {{winner}}!</p>
-    <p *ngIf="result==='draw'">Unentschieden!</p>
+    <p *ngIf="winner!=='draw'">Der Gewinner ist: {{winner}}!</p>
+    <p *ngIf="winner==='draw'">Unentschieden!</p>
 </div>

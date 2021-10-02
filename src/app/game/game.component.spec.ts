@@ -1,14 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { GameComponent } from './game.component';
 
 describe('GameComponent', () => {
   let component: GameComponent;
   let fixture: ComponentFixture<GameComponent>;
+  let router: Router;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GameComponent]
+      declarations: [GameComponent],
+      imports: [RouterTestingModule]
     })
       .compileComponents();
   });
@@ -16,6 +20,7 @@ describe('GameComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(GameComponent);
     component = fixture.componentInstance;
+    router = TestBed.inject(Router);
     fixture.detectChanges();
   });
 
@@ -39,53 +44,9 @@ describe('GameComponent', () => {
     expect(component.selected).toEqual('Papier');
   });
 
-  it('should select computerinput randomly', () => {
-    component.generateComputerSelection();
-    if (component.randomNumber === 0) {
-      expect(component.compSelected).toEqual('Stein');
-    } else if (component.randomNumber === 1) {
-      expect(component.compSelected).toEqual('Schere');
-    } else {
-      expect(component.compSelected).toEqual('Papier');
-    }
-  });
-
-  it('should detect the winner for stone selected', () => {
-    component.selected = 'Stein';
-    component.generateComputerSelection();
-    component.detectWinner();
-    if (component.compSelected === 'Stein') {
-      expect(component.result).toEqual('draw');
-    } else if (component.compSelected === 'Schere') {
-      expect(component.result).toEqual('win');
-    } else {
-      expect(component.result).toEqual('lose');
-    }
-  });
-
-  it('should detect the winner for scissors selected', () => {
-    component.selected = 'Schere';
-    component.generateComputerSelection();
-    component.detectWinner();
-    if (component.compSelected === 'Stein') {
-      expect(component.result).toEqual('lose');
-    } else if (component.compSelected === 'Schere') {
-      expect(component.result).toEqual('draw');
-    } else {
-      expect(component.result).toEqual('win');
-    }
-  });
-
-  it('should detect the winner for paper selected', () => {
-    component.selected = 'Papier';
-    component.generateComputerSelection();
-    component.detectWinner();
-    if (component.compSelected === 'Stein') {
-      expect(component.result).toEqual('win');
-    } else if (component.compSelected === 'Schere') {
-      expect(component.result).toEqual('lose');
-    } else {
-      expect(component.result).toEqual('draw');
-    }
-  });
+  it('should clearData', () => {
+    const navSpy = spyOn(router, 'navigate');
+    component.clearData();
+    expect(navSpy).toHaveBeenCalledWith(['/']);
+  })
 });
