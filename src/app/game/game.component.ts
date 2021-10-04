@@ -15,6 +15,9 @@ export class GameComponent implements OnInit {
   public loses = 0;
   public draws = 0;
   public selections = {player: '', computer: ''};
+  public playerWins = false;
+  public playerLoss = false;
+  public draw = false;
 
   constructor(private readonly gameService: GameService, private router: Router) { }
 
@@ -29,6 +32,9 @@ export class GameComponent implements OnInit {
     this.selections.computer = this.gameService.generateComputerSelection();
     this.winner = this.gameService.detectWinner(selection);
     this.getResults();
+    this.playerWins = this.winner !== 'der Computer' && this.winner !== 'draw';
+    this.playerLoss = this.winner === 'der Computer';
+    this.draw = this.winner === 'draw';
   }
 
   getResults() {

@@ -1,19 +1,19 @@
-<h2 class="text-center">Die Regeln:</h2>
+<h2 class="text-center h2 text-primary">Die Regeln:</h2>
 <ul class="text-center">
     <li>Wähle eine der drei angezeigten Möglichkeiten aus</li>
     <li>Der Computer trifft eine zufällige Auswahl</li>
     <li>Um erneut zu spielen, wähle erneut aus den drei Möglichkeiten aus</li>
 </ul>
 
-<h2 class="text-center mb-3">Triff deine Auswahl:</h2>
+<h2 class="text-center mb-3 h2 text-primary">Triff deine Auswahl:</h2>
 <div class="text-center">
-    <button class="mx-5" (click)="changeSelection('Schere')">
+    <button class="mx-5 btn btn-outline-primary btn-" [ngClass]="{'btn-success': playerWins && selected === 'Schere', 'btn-danger': playerLoss && selected === 'Schere', 'btn-warning': draw && selected === 'Schere'}" (click)="changeSelection('Schere')">
         <img src="../../assets/scissors.png" alt="Schere">
     </button>
-    <button class="mx-5" (click)="changeSelection('Stein')">
+    <button class="mx-5 btn btn-outline-primary" [ngClass]="{'btn-success': playerWins && selected === 'Stein', 'btn-danger': playerLoss && selected === 'Stein', 'btn-warning': draw && selected === 'Stein'}" (click)="changeSelection('Stein')">
         <img src="../../assets/rock.png" alt="Stein">
     </button>
-    <button class="mx-5" (click)="changeSelection('Papier')">
+    <button class="mx-5 btn btn-outline-primary" [ngClass]="{'btn-success': playerWins && selected === 'Papier', 'btn-danger': playerLoss && selected === 'Papier', 'btn-warning': draw && selected === 'Papier'}" (click)="changeSelection('Papier')">
         <img src="../../assets/paper.png" alt="Papier">
     </button>
 </div>
@@ -40,7 +40,7 @@
     </button>
 </div>
 
-<div class="text-center" *ngIf="winner!==''">
+<div class="text-center m-3" *ngIf="winner!==''">
     <p>Du hast gewählt: {{selections.player}}</p>
     <p>Der Computer hat gewählt: {{selections.computer}}</p>
     <p *ngIf="winner!=='draw'">Der Gewinner ist: {{winner}}!</p>

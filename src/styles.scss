@@ -1,2 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
+* {
+    font-family: "Arial";
+    line-height: 1.75;
+}
+
+.logo {
+    max-height: 250px;
+}
+
+body {
+    background: #fefefe;
+}
+
+input {
+    background: #fefefe;
+    border: 1px solid #0401d1;
+    border-radius: 0.5em;
+    padding: 5px;
+}
